@@ -2,7 +2,7 @@
 fun main() {
     println("Bem vindo ao Bytebank")
 
-    val contaAlex = Conta("Alex", 1000)
+    val contaAlex = Conta(titular = "Alex", numero = 1000)
     contaAlex.deposita(200.0)
 
 
@@ -35,7 +35,7 @@ fun main() {
 
     println("Transferência  da conta da Fran para o Alex")
 
-    if (contaFran.transfere(100.0, contaAlex)) {
+    if (contaFran.transfere(destino = contaAlex, valor = 300.0 )) {
         println("Tranferência Sucedida!")
     } else {
         println("Tranferência Falhou!")
@@ -44,22 +44,12 @@ fun main() {
 
 }
 
-// Criando modificadores de acesso para restrição da classe Conta
-
-
 class Conta(
     var titular: String,
-    var numero: Int
+    val numero: Int
 ) {
     var saldo = 0.0
         private set
-
-//    constructor(titular: String, numero: Int){
-//        this.titular = titular
-//        this.numero = numero
-//    }
-
-//comportamento (ou método) da classe.
 
     fun deposita(valor: Double) {
         if (valor > 0) {
@@ -82,19 +72,6 @@ class Conta(
         return false
     }
 }
-
-// Encapsulamento do valor do saldo e só poderá ser acessado pela Conta()
-// Getters and Setters
-
-//    fun getSaldo(): Double{
-//        return saldo
-//    }
-//
-//    fun setSaldo(valor: Double){
-//        saldo = valor
-//    }
-//}
-
 
 // Paradigma Procedural
 
