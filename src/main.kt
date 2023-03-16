@@ -1,7 +1,7 @@
-// Orientado a Objetos
-fun main(){
+// Paradigma Orientado a Objetos
+fun main() {
     println("Bem vindo ao Bytebank")
-    val  contaAlex = Conta()
+    val contaAlex = Conta()
     contaAlex.titular = "Alex"
     contaAlex.numero = 1000
     contaAlex.saldo = 200.0
@@ -19,16 +19,65 @@ fun main(){
     println(contaFran.titular)
     println(contaFran.numero)
     println(contaFran.saldo)
+
+    println("Despositando na conta do Alex")
+    contaAlex.deposita(50.0)
+    println(contaAlex.saldo)
+
+    println("Despositando na conta do Alex")
+    contaFran.deposita(70.0)
+    println(contaFran.saldo)
+
+    println("sacando na conta do Alex")
+    contaAlex.saca(250.0)
+    println(contaAlex.saldo)
+
+    println("Sacando na conta da Fran")
+    contaFran.saca(100.0)
+    println(contaFran.saldo)
+
+    println("Transferência  da conta da Fran para o Alex")
+
+    if (contaFran.transfere(100.0, contaAlex)){
+        println("Tranferência Sucedida!")
+    } else {
+        println("Tranferência Falhou!")
+
+    }
+
 }
+
 
 class Conta {
     var titular = ""
     var numero = 0
     var saldo = 0.0
+
+    //comportamento (ou método) da classe.
+
+    fun deposita(valor: Double) {
+        this.saldo += valor
+    }
+
+    fun saca(valor: Double) {
+        if (saldo >= valor) {
+            saldo -= valor
+        }
+    }
+
+    fun transfere(valor: Double, destino: Conta): Boolean {
+        if (saldo >= valor) {
+            saldo -= valor
+            destino.saldo += valor
+            return true
+        }
+        return false
+    }
 }
 
-// Procedural
-fun testaCopiasEReferencias(){
+
+// Paradigma Procedural
+fun testaCopiasEReferencias() {
 
     val numeroX = 10
     var numeroY = numeroX
@@ -50,7 +99,8 @@ fun testaCopiasEReferencias(){
     println(contaMaria)
 
 }
-fun testaLacos(){
+
+fun testaLacos() {
     val titular: String = "Alex"
     val numeroConta: Int = 1000
     var saldo = 0.0
